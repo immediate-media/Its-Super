@@ -26,24 +26,24 @@ class SuperHeroController extends AbstractController
         // Retrieve 'hero' from query string
         $heroRequested = $request->query->get('hero');
 
+        if (!$heroRequested) {
+            return new JsonResponse([
+                'error' => '400',
+                'message' => 'Missing `hero` query parameter.'
+            ]);
+        }
+
         // Get the hero requested
-        $hero = $this->superheroService->getSuperHero();
-
-        $power = $this->superheroService->getSuperpower($hero);
-        $battleCry = $this->superheroService->getBattleCry($hero);
-        $powerLevel = $this->superheroService->getPowerLevel($hero);
-
-        $universe = match (get_class($hero)) {
-            'App\Hero\Goku' => 'Dragon Ball Z',
-            'App\Hero\IncredibleHulk' => 'Marvel',
-            'App\Hero\Ironman' => 'Marvel',
-            'App\Hero\SpiderMan' => 'Marvel',
-            'App\Hero\Thor' => 'Marvel',
-            'App\Hero\Vegeta' => 'Dragon Ball Z',
-            'App\Hero\Wolverine' => 'Marvel',
-        };
+        // @todo add validation for the hero name
+        $hero = $this->superheroService->getSuperHero(lcfirst($heroRequested));
+        if (!$hero) {
+            return new JsonResponse([
+                'error' => '404',
+                'message' => 'Herro not found.'
+            ]);
+        }
 
         // TODO: return a json object, not a string
-        return new JsonResponse("{$heroRequested} {$universe} {$power}, {$battleCry}, {$powerLevel}");
+        return new JsonResponse($this->superheroService->getCharacterSheet($hero));
     }
 }

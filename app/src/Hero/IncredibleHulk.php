@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 namespace App\Hero;
 
-class IncredibleHulk
+use App\Abstract\AbstractSuperHero;
+
+class IncredibleHulk extends AbstractSuperHero
 {
-    public function getSuperpower(): string
-    {
-        return 'Super strength';
-    }
-
-    public function getBattleCry(): string
-    {
-        return 'HULK SMASH!';
-    }
-
-    public function getPowerLevel(): string
-    {
-        return 'high';
-    }
+    protected string $name = 'IncredibleHulk';
+    protected string $universe = 'Marvel';
+    protected string $powerLevel = 'high';
+    protected string $superPower = 'Super strength';
+    protected string|array $battleCry = 'HULK SMASH!';
 }
