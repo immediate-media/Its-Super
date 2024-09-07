@@ -4,20 +4,14 @@ declare(strict_types=1);
 
 namespace App\Hero;
 
-class Goku
+use App\Abstract\AbstractSuperHero;
+
+class Goku extends AbstractSuperHero
 {
-    public function getSuperpower(): string
-    {
-        return 'Super Saiyan';
-    }
+    protected string $name = 'Goku';
+    protected string $universe = 'Dragon Ball Z';
+    protected string $powerLevel = 'high';
+    protected string $superPower = 'Super Saiyan';
+    protected string|array $battleCry = 'Kamehameha!';
 
-    public function getBattleCry(): string
-    {
-        return 'Kamehameha!';
-    }
-
-    public function getPowerLevel(): string
-    {
-        return 'high';
-    }
 }

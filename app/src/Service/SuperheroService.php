@@ -27,19 +27,15 @@ readonly class SuperheroService
     }
 
     // TODO: Get this to return a specific requested hero
-    public function getSuperHero(): IncredibleHulk|IronMan|SpiderMan|Thor|Wolverine|Goku|Vegeta
+    public function getSuperHero($heroRequested): IncredibleHulk|IronMan|SpiderMan|Thor|Wolverine|Goku|Vegeta|bool
     {
-        $heroes = [
-            $this->incredibleHulk,
-            $this->ironMan,
-            $this->spiderMan,
-            $this->thor,
-            $this->wolverine,
-            $this->goku,
-            $this->vegeta,
-        ];
+        try {
+            return $this->$heroRequested;
+        } catch (\Throwable $e) {
+            // @todo handle missing hero class
+            return false;
+        }
 
-        return $heroes[array_rand($heroes)];
     }
 
     public function getSuperpower(IncredibleHulk|IronMan|SpiderMan|Thor|Wolverine|Goku|Vegeta $hero): string
@@ -55,5 +51,20 @@ readonly class SuperheroService
     public function getPowerLevel(IncredibleHulk|IronMan|SpiderMan|Thor|Wolverine|Goku|Vegeta $hero): string
     {
         return $hero->getPowerLevel();
+    }
+
+    public function getUniverse(IncredibleHulk|IronMan|SpiderMan|Thor|Wolverine|Goku|Vegeta $hero): string
+    {
+        return $hero->getUniverse();
+    }
+
+    public function getHeroName(IncredibleHulk|IronMan|SpiderMan|Thor|Wolverine|Goku|Vegeta $hero): string
+    {
+        return $hero->getName();
+    }
+
+    public function getCharacterSheet(IncredibleHulk|IronMan|SpiderMan|Thor|Wolverine|Goku|Vegeta $hero): array
+    {
+        return $hero->getCharacterSheet();
     }
 }

@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 namespace App\Hero;
 
-class Thor
+use App\Abstract\AbstractSuperHero;
+
+class Thor extends AbstractSuperHero
 {
-    public function getSuperpower(): string
-    {
-        return 'God of Thunder';
-    }
-
-    public function getBattleCry(): string
-    {
-        return 'For Asgard!';
-    }
-
-    public function getPowerLevel(): string
-    {
-        return 'high';
-    }
+    protected string $name = 'Thor';
+    protected string $universe = 'Marvel';
+    protected string $powerLevel = 'high';
+    protected string $superPower = 'God of Thunder';
+    protected string|array $battleCry = 'For Asgard!';
 }

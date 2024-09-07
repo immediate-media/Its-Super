@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 namespace App\Hero;
 
-class IronMan
+use App\Abstract\AbstractSuperHero;
+
+class IronMan extends AbstractSuperHero
 {
-    public function getSuperpower(): string
-    {
-        return 'Super intelligence';
-    }
-
-    public function getBattleCry(): string
-    {
-        return 'I am IronMan';
-    }
-
-    public function getPowerLevel(): string
-    {
-        return 'medium';
-    }
+    protected string $name = 'IronMan';
+    protected string $universe = 'Marvel';
+    protected string $powerLevel = 'medium';
+    protected string $superPower = 'Super intelligence';
+    protected string|array $battleCry = 'I am IronMan';
 }

@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 namespace App\Hero;
 
-class Wolverine
+use App\Abstract\AbstractSuperHero;
+
+class Wolverine extends AbstractSuperHero
 {
-    public function getSuperpower(): string
-    {
-        return 'Regeneration';
-    }
-
-    public function getBattleCry(): string
-    {
-        return 'I\'m the best there is at what I do';
-    }
-
-    public function getPowerLevel(): string
-    {
-        return 'high';
-    }
+    protected string $name = 'Wolverine';
+    protected string $universe = 'Marvel';
+    protected string $powerLevel = 'high';
+    protected string $superPower = 'Regeneration';
+    protected string|array $battleCry = 'I\'m the best there is at what I do';
 }
